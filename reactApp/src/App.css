@@ -1,0 +1,43 @@
+.logoSize{
+  width: 150px;
+  height:60px
+}
+.ImgBackGround{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  background-image: url('https://res.cloudinary.com/dgv5agwfj/image/upload/v1615038041/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/HOMEwithOpacity_q89hsy.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+
+  }
+
+  .Sign {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 15px;
+      border-radius: 5%;
+      border-color: white;
+      background-color: rgba(170,222,192,1);
+      margin: 30px;
+      height: 280px;
+      width: 30vh;
+  }
+  
+  .Sign .Login-input{
+    width: 250px;
+    margin-bottom: 20px;
+  }
+
+  .Card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+  }

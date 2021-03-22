@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "603cd8be764cd07f473d2a96"
+  },
+  "typeRecommandation": "Restaurant",
+  "recommandationDetails": [
+    {
+      "nameRecommandation": "Berthillon",
+  "description": "Chez Berthillon, la qualité « rime avec Passion ». Depuis plus de 60 ans, l’artisan glacier de l’île Saint-Louis nous régale avec ses sorbets et glaces. La maison située sur l’île Saint-Louis à Paris (4e) est d’abord un café-hôtel (Le Bourgogne) avant de devenir l’un des glaciers les plus côtés de la Capitale. Glaces caramel beurre salé, Tiramisu ou chocolat, sorbet fraise des bois, mûre sauvage ou framboise à la rose, … de très nombreux parfums sont ainsi à la carte depuis plus de 60 ans. Dès 1961, le Gault et Millau en fait d’ailleurs la promotion « Cet étonnant glacier qui se cache dans un bistrot de l’île Saint-Louis », le tout Paris accourt.",
+  "telephone": "+33 (0)1 43 54 31 61",
+  "logo": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199044/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/berthillon_mrxomn.png",
+  "adresse": "31 rue saint louis en l'ile, 75004 Paris",
+  "visuel": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199114/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/salon-the-berthillon-boutique-01_orwku6.jpg",
+  "urlSiteWeb": "https://berthillon.fr",
+  "mapView": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199309/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/Capture_d_%C3%A9cran_2021-03-08_%C3%A0_11.28.19_smoajl.png"
+    },
+    {
+      "nameRecommandation": "La Tour d'Argent",
+  "description": "Fondée en 1582, cette élégante auberge de bords de Seine devient un restaurant en 1780. C'est au début du 20e s. qu'André Terrail l’achète, avec une idée de génie : élever l’immeuble d’un étage pour y installer la salle à manger, et jouir ainsi d’un panorama unique, l'une des plus belles vues sur la Seine et Notre-Dame-de-Paris ! Pour le reste, l'âme de la Tour d'Argent évolue avec son temps : véritable palimpseste, la carte, réinterprétée par Yannick Franques, MOF 2004, conserve la mémoire de plusieurs décennies de haute gastronomie française. Ainsi le caneton Frédéric Delair maturé, servi dans son ensemble, mis en avant en deux services. Que les puristes se rassurent, le service, parfaitement réglé, assure toujours le spectacle. Quant à l’extraordinaire cave, elle renfermerait... près de 320 000 bouteilles.",
+  "telephone": "+33 (0)1 43 54 23 31",
+  "logo": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199507/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/logo_tour_tqodsa.png",
+  "adresse": "17 Quai de la Tournelle, 75005 Paris",
+  "visuel": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199531/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/tour_oac4vt.jpg",
+  "urlSiteWeb": "https://tourdargent.com",
+  "mapView": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199552/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/Capture_d_%C3%A9cran_2021-03-08_%C3%A0_11.31.33_lqgrui.png"
+    },
+    {
+      "nameRecommandation": "L'Huîtrerie POGET - DE WITTE",
+  "description": "L’Huîtrerie POGET DE WITTE est située en plein coeur de Paris, sur l’île Saint Louis. L’endroit est magique, entre la cathédrale Notre Dame de Paris et les nombreux hôtels particuliers, il y flotte une atmosphère de village. Ce bar à huîtres vous propose de commander un produit d’exception, “Les Huîtres POGET”, à emporter ou sur place dans une ambiance décontractée (capacité d’une douzaine de personnes). Vous trouverez également dans la boutique des produits artisanaux fins pour accompagner vos huîtres. Saumons fumés, fleur de sel de Charente-Maritime, Champagnes... Tous ces produits artisanaux peuvent également être commandés en ligne.",
+  "telephone": "+33 (0)1 42 49 03 81",
+  "logo": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199858/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/logo_huitre_vdz6c9.png",
+  "adresse": "5 Rue Jean du Bellay, 75004 Paris",
+  "visuel": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199862/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/huitres-pogets-2-12_sxuw9a.jpg",
+  "urlSiteWeb": "https://www.poget-dewitte.com",
+  "mapView": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615199866/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/Capture_d_%C3%A9cran_2021-03-08_%C3%A0_11.37.27_nwoex5.png"
+    },
+    {
+      "nameRecommandation": "La Brasserie de l'Isle Saint-Louis",
+  "description": "Merveilleusement située à la pointe de l’Ile Saint-Louis, en face de la cathédrale Notre-Dame de Paris, la Brasserie de l’Isle Saint-Louis vous accueille dans son chaleureux décor typique des brasseries parisiennes des années trente. Parmi les dernières grandes brasseries parisiennes ayant maintenu leur indépendance, la Brasserie de l’Isle Saint-Louis a su conserver son âme authentique et son caractère unique. Elle demeure, envers et contre tout, un lieu intemporel. Sa cuisine traditionnelle et bourgeoise est restée fidèle à son savoir-faire : produits frais, de qualité supérieure et méticuleusement sélectionnés. Bien entendu, les préparations industrielles surgelées, n’ont pas droit de cité ! Nos plats sont faits maison, mijotés et mitonnés par les bons soins du chef de cuisine et de sa brigade.",
+  "telephone": "+33 (0)1 43 54 02 59",
+  "logo": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615200435/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/carte_vwfgpr.png",
+  "adresse": "55 Quai de Bourbon, 75004 Paris",
+  "visuel": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615200447/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/BrasserieSaintLouis15-1024x683_ux07lh.jpg",
+  "urlSiteWeb": "http://www.labrasserie-isl.fr",
+  "mapView": "https://res.cloudinary.com/dgv5agwfj/image/upload/v1615200452/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/Capture_d_%C3%A9cran_2021-03-08_%C3%A0_11.41.54_bo2z8s.png"
+    }
+  ],
+  "hotel": "603cd6ae5206ad4f04296218",
+}]
