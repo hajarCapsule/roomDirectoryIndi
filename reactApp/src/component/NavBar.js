@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-
-} from 'reactstrap';
+import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHome,faSignOutAlt,faUser} from '@fortawesome/free-solid-svg-icons'
+import {faHome,faSignOutAlt,faUser,faMapMarked} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -28,12 +18,16 @@ const NavBar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem  >
+
+            <NavItem>
               <Link to="/home"><NavLink style={{color:'#FFFFFF'}} ><FontAwesomeIcon icon={faHome} size={35}/> MyHome</NavLink></Link>
             </NavItem>
-            <NavItem>
 
-              
+            <NavItem>
+              <Link to="/recommandation"><NavLink style={{color:'#FFFFFF'}} ><FontAwesomeIcon icon={faMapMarked} size={35}/> Mes recommandations</NavLink></Link>
+            </NavItem>
+
+            <NavItem>
             <Link to="/"><NavLink style={{color:'#FFFFFF'}} ><FontAwesomeIcon icon={faSignOutAlt} size={35}/> LogOUT</NavLink></Link>
             </NavItem>
 

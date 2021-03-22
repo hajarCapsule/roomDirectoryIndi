@@ -13,14 +13,16 @@ var foodModel = require('../models/foods')
 
 
 //GET HOME IMAGE
-
 router.get("/image", async function (req, res) {
+
   var saveImage = await hotelInfosModel.find()
   var images = saveImage[0].images
   result = false
+
   if (images) {
     result = true
   }
+
   res.json({ result, images })
 })
 
@@ -31,10 +33,6 @@ router.post('/sign-up', async function (req, res, next) {
   var result = false
   var saveUser = null
   var token = null
-  console.log('lastName', req.body.lastnameFromFront)
-  console.log('email', req.body.emailFromFront)
-  console.log('room', req.body.roomNumberFromFront)
-
 
   // CONDITIONS SIGN UP AVEC MESSAGES DERREURS SUR CHAMPS VIDE ET VOUS ETES DEJA INSCRITS
   const data = await userModel.findOne({
@@ -59,12 +57,12 @@ router.post('/sign-up', async function (req, res, next) {
     })
 
     saveUser = await newUser.save()
+
     if (saveUser) {
       token = saveUser.token
       result = true
     }
   }
-  console.log(error)
 
   res.json({ result, saveUser, error, token })
 
@@ -73,25 +71,19 @@ router.post('/sign-up', async function (req, res, next) {
 
 //POST SIGN-IN
 router.post('/sign-in', async function (req, res, next) {
+
   var user = null
   var error = []
   var token = null
   var result = false
 
-  console.log('lastNameIn', req.body.lastnameFromFront)
-  console.log('emailIN', req.body.emailFromFront)
-  console.log('roomIN', req.body.roomNumberFromFront)
-
-
   // CONDITIONS SIGN UP AVEC MESSAGES DERREURS SUR CHAMPS VIDE ET VOUS ETES DEJA INSCRITS
-
   if (req.body.emailFromFront == ''
     || req.body.lastnameFromFront == ''
     || req.body.roomNumberFromFront == ''
   ) {
     error.push("champs vides. Merci de saisir tous les champs")
   }
-  console.log(error.length, "ugddjdgjdhjs")
 
 
   // SI CHAMPS REMPLI TU ENVOIES LE TOUT 
@@ -103,7 +95,6 @@ router.post('/sign-in', async function (req, res, next) {
       email: req.body.emailFromFront,
       roomNumber: req.body.roomNumberFromFront,
     })
-    console.log("user+++++: ", user)
   }
 
   if (user) {
@@ -117,7 +108,7 @@ router.post('/sign-in', async function (req, res, next) {
   } else {
     error.push("Veuillez d'abord vous inscrire avant de vous connecter ! Merci.")
   }
-  console.log(user, "je suis inscrite")
+
   res.json({ result, user, error, token })
 })
 
@@ -126,40 +117,43 @@ router.post('/sign-in', async function (req, res, next) {
 router.get('/events', async function (req, res, next) {
 
   var events = await eventsModel.find()
-
   var result = false;
+
   if (events) {
     result = true;
   }
+
   res.json({ result, events })
 })
 
-//Get EVENT ID
-
+//Récupérer l'event sélectionné au niveau du front
 router.get('/events/:id', async function (req, res, next) {
 
   var event = await eventsModel.findById(req.params.id)
-
-  console.log('event', event)
   var result = false;
+
   if (event) {
     result = true;
   }
+
   res.json({ result, event })
 })
 
-//POST EVENT CONFIRMATION  
+//Ajouter une confirmation de la participation à l'événement sélectionné par user
 router.post('/confirmation', async function (req, res, next) {
 
   var user = await userModel.findOne({
     token: req.body.token,
   })
+
   var idUser = user.id
+
   var newEventConfirmation = new eventConfirmationModel({
     user: idUser,
     event: req.body.eventId,
     isComing: req.body.isComing
   })
+
   saveConfirmationEvent = await newEventConfirmation.save()
 
   var result = false;
@@ -171,7 +165,7 @@ router.post('/confirmation', async function (req, res, next) {
 })
 
 
-//GET RECOMMENDATION
+//Récupérer les recommandations de la DB
 router.get("/recommandation", async function (req, res) {
 
   const recommandations = await recommandationsModel.find()
@@ -180,30 +174,29 @@ router.get("/recommandation", async function (req, res) {
   if (recommandations) {
     result = true
   }
-  res.json({ result, recommandations })
 
+  res.json({ result, recommandations })
 })
 
+//Récupérer la recommandation sélectionnée par le user par type et name
 router.get("/recommandation/:type/:name", async function (req, res) {
 
   const recommandations = await recommandationsModel.find({ typeRecommandation: req.params.type })
   var recommandationDetails = recommandations[0].recommandationDetails.filter(e => e.nameRecommandation == req.params.name)
 
   var result = false
-
   if (recommandationDetails) {
     result = true
   }
-  res.json({ result, recommandationDetails })
 
+  res.json({ result, recommandationDetails })
 })
 
-
+//Récupérer les repas selon leur type(petit dej)
 router.get("/restauration/:route", async function (req, res) {
+
   var foodType = req.params.route;
-  console.log('type',req.params.route)
   var food = await foodModel.find({ type: req.params.route });
-console.log('fooddddddd',food)
 
   var result = false
   if (food) {
@@ -213,9 +206,10 @@ console.log('fooddddddd',food)
   res.json({result,food });
 });
 
+//Récupérer les repas selon leur type(petit dej)et l'id du petit dej(parisien ou gourmand)
 router.get("/restauration/:route/:id", async function (req, res) {
+
   var foodType = req.params.route;
-  console.log('type',req.params.route)
   var food = await foodModel.findById( req.params.id);
 
   var result = false
@@ -226,7 +220,7 @@ router.get("/restauration/:route/:id", async function (req, res) {
   res.json({result,food });
 });
 
-// send the order to the BDD 
+//Ajouter une commande dans la DB
 router.post("/orderConfirmation", async function (req, res) {
   
   var saveUser = await userModel.findOne({
@@ -234,7 +228,7 @@ router.post("/orderConfirmation", async function (req, res) {
   })
   
   var idUser = saveUser.id
-  var hhh = JSON.parse(req.body.details)
+  var detail = JSON.parse(req.body.details)
 
   let obj = {};
   const newOrder = new orderBreakfastsModel({
@@ -245,13 +239,13 @@ router.post("/orderConfirmation", async function (req, res) {
       order: [
         {
           foodID: req.body.foodID,
-          details:hhh.tabOrderFood,
+          details:detail.tabOrderFood,
         }, 
       ],
     
   });
   const order = await newOrder.save();
-  console.log('newOrder',hhh.tabOrderFood)
+
   if(order.userID){
     res.json({result : "order saved"})
   }else if(!order.userID){
@@ -259,21 +253,17 @@ router.post("/orderConfirmation", async function (req, res) {
   }
 });
 
-//GET EVENT /USER
+//Recap des events sélectionné par utilisateur
 router.post('/account', async function (req, res, next) {
-
-  console.log(req.body.token, "token")
 
   var saveUser = await userModel.findOne({
     token: req.body.token,
   })
-  console.log(saveUser.id, 'useeeeeeeer')
   var idUser = saveUser.id
   var saveEvents = await eventConfirmationModel.find({
     user: idUser,
     isComing:true
   }).populate('event').exec()
-  console.log('saveEvents', saveEvents)
 
 
   var resultUser = false;
@@ -285,8 +275,6 @@ router.post('/account', async function (req, res, next) {
     resultEvent = true;
   }
  
-
-
   res.json({ resultUser, resultEvent, saveUser, saveEvents })
 })
 

@@ -71,6 +71,7 @@ function EventConfirmationPage(props) {
     <>
       <NavBar />
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+        
         {/*Card de la page */}
         <Card
           style={{ width: '65%', justifyContent: 'center' }}
@@ -107,8 +108,6 @@ function EventConfirmationPage(props) {
       </div>
 
     </>
-
-
 
   );
 }

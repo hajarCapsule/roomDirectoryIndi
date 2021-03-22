@@ -1,14 +1,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {CardImg, CardBody,CardSubtitle,} from 'reactstrap';
+import { CardImg, CardBody, CardSubtitle, } from 'reactstrap';
 import { Card } from 'antd';
 import NavBar from './NavBar'
 
 
 function ServicePage(props) {
 
-  var images = ['https://res.cloudinary.com/dgv5agwfj/image/upload/v1614700845/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/PICTOS/1_Picto_PtitDej_p0emw3.png']
+  //Déclaration des services
 
   var box = [{
     content: 'Petit-déjeuner à la parisienne, servi de 7h30 à 11h00 en salle voûtée ou en chambre - 15,00€',
@@ -32,41 +32,47 @@ function ServicePage(props) {
   }, {
     content: 'Ascenseur', url: 'https://res.cloudinary.com/dgv5agwfj/image/upload/v1614700846/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/PICTOS/18_Picto_Ascenseur_m6b1ca.png'
   }]
+
   return (
     <>
-<NavBar/>
+      <NavBar />
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
-      <Card
-        style={{ width: "65%", height: '100%' }}
-        cover={
-          <img
-            alt="example"
-            src="https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615106649/ROOM%20DIRECTORY/HOME%20PAGE/services_mnum6p.jpg"
-          />
-        }
-      >
-        <div className="Card">
-          {box.map((image, i) => {
-            return (
-              <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
-                <Card style={{
-                  width: 300,
-                  margin: '10px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
-                  <CardImg  style={{marginBottom:15 }} top width= "80%" height="100px" src={image.url} alt="Card image cap" />
-                  <CardBody>
-                    <CardSubtitle tag="h5" className="mb-2 text-muted">{image.content} </CardSubtitle>
-                  </CardBody>
-                </Card>
-              </div>
-            )
-          })
+
+        {/*Card de la page */}
+        <Card
+          style={{ width: "65%", height: '100%' }}
+          cover={
+            <img
+              alt="example"
+              src="https://res.cloudinary.com/dkyfnkhqz/image/upload/v1615106649/ROOM%20DIRECTORY/HOME%20PAGE/services_mnum6p.jpg"
+            />
           }
-        </div>
-      </Card>
+        >
+
+          <div className="Card">
+
+            {/*affichage des Services Cards  */}
+            {box.map((image, i) => {
+              return (
+                <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Card style={{
+                    width: 300,
+                    margin: '10px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                  }}>
+                    <CardImg style={{ marginBottom: 15 }} top width="60%" height="100px" src={image.url} alt="Card image cap" />
+                    <CardBody>
+                      <CardSubtitle tag="h5" className="mb-2 text-muted">{image.content} </CardSubtitle>
+                    </CardBody>
+                  </Card>
+                </div>
+              )
+            })
+            }
+          </div>
+        </Card>
       </div>
     </>
 

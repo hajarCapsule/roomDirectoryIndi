@@ -71,23 +71,23 @@ function LoginPage(props) {
   }
 
   //Redirection vers HOME
-  if(userExists){
+  if (userExists) {
     return <Redirect to='/home' />
   }
 
- // affichage de l'ensemble des messages Signin
-  var tabErrorsSignin = listErrorsSignin.map((error,i) => {
-    return(<p>{error}</p>)
+  // affichage de l'ensemble des messages Signin
+  var tabErrorsSignin = listErrorsSignin.map((error, i) => {
+    return (<p>{error}</p>)
   })
 
-   // affichage de l'ensemble des messages Signup
-  var tabErrorsSignup = listErrorsSignup.map((error,i) => {
-    return(<p>{error}</p>)
+  // affichage de l'ensemble des messages Signup
+  var tabErrorsSignup = listErrorsSignup.map((error, i) => {
+    return (<p>{error}</p>)
   })
 
   return (
-    
-    
+
+
     <div className='ImgBackGround'>
       {/* Input SIGN-IN et exécution de la fonction handleSubmitSignin*/}
 
@@ -120,10 +120,10 @@ function LoginPage(props) {
 
   );
 }
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    addToken: function(token){
-      dispatch({type: 'addToken', token: token})
+    addToken: function (token) {
+      dispatch({ type: 'addToken', token: token })
     }
   }
 }
