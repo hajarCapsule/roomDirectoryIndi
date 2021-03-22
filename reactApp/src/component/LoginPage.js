@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 function LoginPage(props) {
+
   //DECLARATION DES ETATS DE SIGNUP//
   const [emailSignUp, setEmailSignUp] = useState();
   const [lastNameSignUp, setLastNameSignUp] = useState();
@@ -18,6 +19,7 @@ function LoginPage(props) {
   const [listErrorsSignin, setErrorsSignin] = useState([])
   const [listErrorsSignup, setErrorsSignup] = useState([])
 
+  //DECLARATION de l'Etat pour vérification de l'existence du User pour la redirection vers HOME//
   const [userExists, setUserExists] = useState(false)
 
   //FONCTION SIGNUP//
@@ -33,10 +35,12 @@ function LoginPage(props) {
     const body = await data.json()
 
     if (body.result === true) {
+
       //ENREGISTREMENT DU TOKEN DANS UN REDUCER//
       props.addToken(body.token)
       setUserExists(true)
     } else {
+
       //MESSAGE D'ERREU SIGNUP//
       setErrorsSignup(body.error)
     }
@@ -44,7 +48,7 @@ function LoginPage(props) {
 
   //FONCTION SIGNIN//
   var handleSubmitSignin = async () => {
-    //ENVOIE DES INFOS AU BACK POUR VERIFICATION SI USER DEJA EXISTANT//
+    //ENVOIE DES INFOS AU BACK POUR VERIFICATION SI USER EXISTE DEJA //
 
     const data = await fetch('/sign-in', {
       method: 'POST',
@@ -66,37 +70,48 @@ function LoginPage(props) {
     }
   }
 
+  //Redirection vers HOME
   if(userExists){
     return <Redirect to='/home' />
   }
 
+ // affichage de l'ensemble des messages Signin
   var tabErrorsSignin = listErrorsSignin.map((error,i) => {
     return(<p>{error}</p>)
   })
 
+   // affichage de l'ensemble des messages Signup
   var tabErrorsSignup = listErrorsSignup.map((error,i) => {
     return(<p>{error}</p>)
   })
+
   return (
+    
+    
     <div className='ImgBackGround'>
-      {/* SIGN-IN */}
+      {/* Input SIGN-IN et exécution de la fonction handleSubmitSignin*/}
 
       <div className="Sign">
         <h1>SignIn</h1>
         <Input onChange={(e) => setLastNameSignIn(e.target.value)} className="Login-input" placeholder="LastName" />
         <Input onChange={(e) => setEmailSignIn(e.target.value)} className="Login-input" placeholder="email@email.com" />
         <Input onChange={(e) => setRoomNumberSignIn(e.target.value)} className="Login-input" placeholder="N° Chambre" />
+
+        {/* Affichage des messages d'erreur SignIN*/}
         {tabErrorsSignin}
+
         <Button onClick={() => handleSubmitSignin()} type="primary">Sign-in</Button>
       </div>
 
-      {/* SIGN-UP */}
+      {/* Input SIGN-UP et exécution de la fonction handleSubmitSignup*/}
 
       <div className="Sign">
         <h1>SignUp</h1>
         <Input onChange={(e) => setLastNameSignUp(e.target.value)} className="Login-input" placeholder="LastName" />
         <Input onChange={(e) => setEmailSignUp(e.target.value)} className="Login-input" placeholder="email@email.com" />
         <Input onChange={(e) => setRoomNumberSignUp(e.target.value)} className="Login-input" placeholder="N° Chambre" />
+
+        {/* Affichage des messages d'erreur SignUP*/}
         {tabErrorsSignup}
 
         <Button onClick={() => handleSubmitSignup()} style={{ width: '80px' }} type="primary">Sign-up</Button>

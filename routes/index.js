@@ -10,12 +10,8 @@ var eventsModel = require('../models/events')
 var orderBreakfastsModel = require('../models/orderBreakfasts')
 var recommandationsModel = require('../models/recommandations')
 var foodModel = require('../models/foods')
-var roomDirectoryBaseModel = require('../models/roomDirectoryBase')
 
 
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 //GET HOME IMAGE
 
 router.get("/image", async function (req, res) {
@@ -125,37 +121,6 @@ router.post('/sign-in', async function (req, res, next) {
   res.json({ result, user, error, token })
 })
 
-// GET ROOM DIRECTORY LETTER
-router.get('/roomDirectoryDetail/:lettre', async function (req, res, next) {
-
-  console.log('lettre', req.params.lettre)
-
-  var filterRoomDirectory = await roomDirectoryBaseModel.find({ letterFilter: req.params.lettre })
-  console.log('retourBDD', filterRoomDirectory)
-  var result = false;
-  if (filterRoomDirectory) {
-    result = true;
-  }
-
-  res.json({ result, filterRoomDirectory })
-
-})
-
-// GET ROOM DIRECTORY BADGE
-router.get('/roomDirectoryBadge/:badge', async function (req, res, next) {
-
-  console.log('badge', req.params.badge)
-
-  var filterRoomDirectory = await roomDirectoryBaseModel.find({ itemName: req.params.badge })
-  console.log('retourBDD', filterRoomDirectory)
-  var result = false;
-  if (filterRoomDirectory) {
-    result = true;
-  }
-
-  res.json({ result, filterRoomDirectory })
-
-});
 
 //Get EVENT (Carousel & detail EVENT)
 router.get('/events', async function (req, res, next) {
@@ -218,6 +183,7 @@ router.get("/recommandation", async function (req, res) {
   res.json({ result, recommandations })
 
 })
+
 router.get("/recommandation/:type/:name", async function (req, res) {
 
   const recommandations = await recommandationsModel.find({ typeRecommandation: req.params.type })
@@ -231,71 +197,7 @@ router.get("/recommandation/:type/:name", async function (req, res) {
   res.json({ result, recommandationDetails })
 
 })
-//GET ORDER/ EVENT /USER
-router.post('/account', async function (req, res, next) {
 
-  console.log(req.body.token, "token")
-
-  var saveUser = await userModel.findOne({
-    token: req.body.token,
-  })
-  console.log(saveUser.id, 'useeeeeeeer')
-  var idUser = saveUser.id
-  var saveEvents = await eventConfirmationModel.find({
-    user: idUser,
-  }).populate('event').exec()
-  console.log('saveEvents', saveEvents)
-
-
-  var saveOrder = await orderBreakfastsModel.find({
-    userID: idUser,
-  }).populate('order').exec()
-  console.log('saveOrder', saveOrder)
-
-  var resultUser = false;
-  if (saveUser) {
-    resultUser = true;
-  }
-  var resultEvent = false;
-  if (saveEvents) {
-    resultEvent = true;
-  }
-  var resultOrder = false;
-  if (saveOrder) {
-    resultOrder = true;
-  }
-
-
-  res.json({ resultOrder, resultUser, resultEvent, saveUser, saveEvents, saveOrder })
-})
-
-//GET ORDER by ID
-router.get('/account/:idOrder', async function (req, res, next) {
-  console.log('req.params.idOrder', req.params.idOrder)
-  console.log('req token', req.params.token)
-
-  var saveOrder = await orderRestaurationModel.findOne({ _id: req.params.idOrder })
-  console.log('retoursaveOrder', saveOrder)
-
-  idfood = saveOrder.order[0].foodID
-  console.log('cccc', idfood)
-
-  var saveFood = await foodModel.findById(idfood)
-  console.log('aaaaaaaa', saveFood)
-
-
-
-  var resultOrder = false;
-  if (saveOrder) {
-    resultOrder = true;
-  }
-  if (saveFood) {
-    resultFood = true;
-  }
-
-  res.json({ resultFood, resultOrder, saveFood, saveOrder })
-
-});
 
 router.get("/restauration/:route", async function (req, res) {
   var foodType = req.params.route;
@@ -348,7 +250,6 @@ router.post("/orderConfirmation", async function (req, res) {
       ],
     
   });
-
   const order = await newOrder.save();
   console.log('newOrder',hhh.tabOrderFood)
   if(order.userID){
@@ -358,9 +259,36 @@ router.post("/orderConfirmation", async function (req, res) {
   }
 });
 
+//GET EVENT /USER
+router.post('/account', async function (req, res, next) {
+
+  console.log(req.body.token, "token")
+
+  var saveUser = await userModel.findOne({
+    token: req.body.token,
+  })
+  console.log(saveUser.id, 'useeeeeeeer')
+  var idUser = saveUser.id
+  var saveEvents = await eventConfirmationModel.find({
+    user: idUser,
+    isComing:true
+  }).populate('event').exec()
+  console.log('saveEvents', saveEvents)
 
 
+  var resultUser = false;
+  if (saveUser) {
+    resultUser = true;
+  }
+  var resultEvent = false;
+  if (saveEvents) {
+    resultEvent = true;
+  }
+ 
 
+
+  res.json({ resultUser, resultEvent, saveUser, saveEvents })
+})
 
 
 module.exports = router;

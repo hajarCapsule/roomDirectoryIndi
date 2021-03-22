@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { Card, Carousel,Image } from 'antd';
 import { connect } from "react-redux";
 import NavBar from './NavBar'
-import Sidebar from './Sidebar'
+import '../App.css'
 
 function HomePage(props) {
     //Déclaration des ETATS
