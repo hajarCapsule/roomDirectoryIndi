@@ -11,6 +11,9 @@ var orderBreakfastsModel = require('../models/orderBreakfasts')
 var recommandationsModel = require('../models/recommandations')
 var foodModel = require('../models/foods')
 
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
 //GET HOME IMAGE
 router.get("/image", async function (req, res) {
