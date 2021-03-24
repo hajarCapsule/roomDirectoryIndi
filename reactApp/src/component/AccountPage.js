@@ -75,8 +75,11 @@ function AccountPage(props) {
               {order.map((myOrder, i) => {
                 return (
                   <AccordionDetails style={{ borderWidth: 3, borderColor: 'white', borderStyle: 'solid', backgroundColor: '#F8F8F8' }}>
+                    <Typography  style={{ fontSize:18,fontWeight:'bold'}}>
+                    {myOrder.lieu} 
                     <Typography>
-                    {myOrder.quantity} X {myOrder.foodID.nameArticle}  au prix de {myOrder.total} €
+                    {myOrder.quantity} x Petit Déjeuner {myOrder.foodID.nameArticle}  au prix de {myOrder.total} €
+                    </Typography>
                     </Typography>
                   </AccordionDetails>
                 )
