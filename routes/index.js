@@ -53,7 +53,7 @@ router.post('/sign-up', async function (req, res, next) {
   }
   else if (error.length == 0) {
     var newUser = new userModel({
-      lastName: req.body.lastnameFromFront,
+      lastName: req.body.lastnameFromFront.toLowerCase(),
       email: req.body.emailFromFront,
       roomNumber: req.body.roomNumberFromFront,
       token: uid2(32)
@@ -94,7 +94,7 @@ router.post('/sign-in', async function (req, res, next) {
   if (error.length == 0) {
 
     var user = await userModel.findOne({
-      lastName: req.body.lastnameFromFront,
+      lastName: req.body.lastnameFromFront.toLowerCase(),
       email: req.body.emailFromFront,
       roomNumber: req.body.roomNumberFromFront,
     })
