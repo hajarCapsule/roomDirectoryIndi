@@ -15,6 +15,7 @@ function AccountPage(props) {
   //Déclaration des ETATS
   const [account, setAccount] = useState([])
   const [event, setEvent] = useState([])
+  const [order, setOrder] = useState([])
 
 
   //Recupération des événements de l'utilisateur du Backend
@@ -28,6 +29,7 @@ function AccountPage(props) {
       const body = await data.json()
       setAccount(body.saveUser)
       setEvent(body.saveEvents)
+      setOrder(body.saveOrder)
     }
     accountFunction()
 
@@ -44,11 +46,11 @@ function AccountPage(props) {
         <Card style={{ width: '65%', height: '100%' }}
           cover={<img alt="example" src="https://res.cloudinary.com/dgv5agwfj/image/upload/v1614590356/Hotel%20des%20Deux-%C3%8Eles%20%28Room%20Directory%29/3W8A7073_hotel_des_deux_iles_bd_gqbwwd.jpg" />}
           >
-          <CardBody style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+          <CardBody >
 
-            <CardText >Bonjour {account.lastName} !!</CardText>
-            <CardText >Numéro de chambre : {account.roomNumber}</CardText>
-            <CardText >Récapitulatif:</CardText>
+            <CardText style={{ display: 'flex', justifyContent: 'center',fontSize:20,fontWeight:'bold'}} >Bonjour {account.lastName} !!</CardText>
+            <CardText style={{ display: 'flex', justifyContent: 'center',fontSize:20}}>Numéro de chambre : {account.roomNumber}</CardText>
+            <CardText style={{ display: 'flex', justifyContent: 'center',fontSize:20}}>Récapitulatif:</CardText>
 
             {/*LISTE DES EVENEMENTS*/}
             <Accordion >
@@ -60,6 +62,21 @@ function AccountPage(props) {
                   <AccordionDetails style={{ borderWidth: 3, borderColor: 'white', borderStyle: 'solid', backgroundColor: '#F8F8F8' }}>
                     <Typography>
                       {evenement.event.nameEvents}
+                    </Typography>
+                  </AccordionDetails>
+                )
+              })}
+            </Accordion>
+
+            <Accordion >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header" style={{ marginBottom: 8, backgroundColor: '#AADEC0', opacity: 0.7 }} >
+                <Typography > Mes Commandes</Typography>
+              </AccordionSummary>
+              {order.map((myOrder, i) => {
+                return (
+                  <AccordionDetails style={{ borderWidth: 3, borderColor: 'white', borderStyle: 'solid', backgroundColor: '#F8F8F8' }}>
+                    <Typography>
+                    {myOrder.quantity} X {myOrder.foodID.nameArticle}  au prix de {myOrder.total} €
                     </Typography>
                   </AccordionDetails>
                 )

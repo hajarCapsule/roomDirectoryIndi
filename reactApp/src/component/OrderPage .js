@@ -57,7 +57,28 @@ function OrderPage(props) {
 
   //Création dune copier du tableau tabOrderFood en pushant le type et la quantité du choix
   function onChange(value, entry) {
-    setTabOrderFood([...tabOrderFood, { type: entry, quantity: value }])
+
+    var alreadyExist = false;
+
+  //Vérifier si tableau est vide et créer une copie du tableau en insérant l'objet du type et de la quantité
+    if(tabOrderFood.length === 0){
+      setTabOrderFood([...tabOrderFood,{type:entry,quantity:value}])
+
+  // si tableau n'est pas vide, on parcours le tableau pour éviter de créer des doublons
+    }else{
+      tabOrderFood.map((order,i)=>{
+
+      //Si le type est déjà existant,mettre à jour juste la quantité
+        if(order.type === entry && order.quantity != value){
+            alreadyExist = true;
+            tabOrderFood.splice(i, 1, {type:entry,quantity:value});
+        }
+      })
+
+      if(alreadyExist == false){
+        setTabOrderFood([...tabOrderFood,{type:entry,quantity:value}])
+      }
+    }
   }
 
   //Enregistrement de la commande dans le back//  
@@ -127,7 +148,7 @@ function OrderPage(props) {
                       <Typography>
 
                         {/*Execution de la fonction Onchange et la récupération du choix et quantité comme paramètre*/}
-                        <InputNumber min={1} max={10} defaultValue={0} onChange={(e) => { onChange(e, entry) }} style={{ width: 50 }} /> x  {entry}</Typography>
+                        <InputNumber min={1} max={10} placeholder={1} onChange={(e) => { onChange(e, entry) }} style={{ width: 50 }} /> x  {entry}</Typography>
                     </AccordionDetails>
                     )
                   })}

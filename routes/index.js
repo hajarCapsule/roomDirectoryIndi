@@ -8,7 +8,7 @@ var userModel = require('../models/users')
 var eventConfirmationModel = require('../models/eventConfirmation')
 var eventsModel = require('../models/events')
 var orderBreakfastsModel = require('../models/orderBreakfasts')
-var recommandationsModel = require('../models/recommandations')
+var recommandationsModel = require('../models/recommandationsDetails')
 var foodModel = require('../models/foods')
 
 router.get('/', function (req, res, next) {
@@ -239,9 +239,9 @@ router.post("/orderConfirmation", async function (req, res) {
     quantity: req.body.quantity,
     lieu: req.body.lieu,
     userID: idUser,
+    foodID: req.body.foodID,
       order: [
         {
-          foodID: req.body.foodID,
           details:detail.tabOrderFood,
         }, 
       ],
@@ -269,16 +269,27 @@ router.post('/account', async function (req, res, next) {
   }).populate('event').exec()
 
 
-  var resultUser = false;
-  if (saveUser) {
-    resultUser = true;
-  }
-  var resultEvent = false;
-  if (saveEvents) {
-    resultEvent = true;
-  }
- 
-  res.json({ resultUser, resultEvent, saveUser, saveEvents })
+  var saveOrder = await orderBreakfastsModel.find({
+    userID: idUser,
+    }).populate('foodID').exec()
+    console.log('saveOrder',saveOrder)
+
+    
+  
+    var resultUser = false;
+    if (saveUser) {
+      resultUser = true;
+    }
+    var resultEvent = false;
+    if (saveEvents) {
+      resultEvent = true;
+    }
+    var resultOrder = false;
+    if (saveOrder) {
+      resultOrder = true;
+    }
+  
+  res.json({ resultOrder,resultUser,resultEvent,saveUser,saveEvents,saveOrder})
 })
 
 
