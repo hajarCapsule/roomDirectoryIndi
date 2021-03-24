@@ -256,25 +256,26 @@ router.post("/orderConfirmation", async function (req, res) {
   }
 });
 
-//Recap des events sélectionné par utilisateur
+//Recap des commandes et des events sélectionné par utilisateur
 router.post('/account', async function (req, res, next) {
 
   var saveUser = await userModel.findOne({
     token: req.body.token,
   })
+
   var idUser = saveUser.id
+
+  //Récupérer les événements d'un utilisateur
   var saveEvents = await eventConfirmationModel.find({
     user: idUser,
     isComing:true
   }).populate('event').exec()
 
-
+  //Récupérer les commandes d'un utilisateur
   var saveOrder = await orderBreakfastsModel.find({
     userID: idUser,
     }).populate('foodID').exec()
-    console.log('saveOrder',saveOrder)
-
-    
+   
   
     var resultUser = false;
     if (saveUser) {
